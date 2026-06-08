@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Максим Бородин — Резюме</title>
+    <!-- Подключение шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Иконки FontAwesome для контактов -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         :root {
@@ -211,23 +212,6 @@
             top: -2px;
         }
 
-        /* Блок с графиками */
-        .dashboard-section {
-            background-color: var(--soft-bg);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid var(--soft-line);
-            margin-top: 20px;
-        }
-
-        .chart-container {
-            position: relative;
-            margin: auto;
-            height: 300px;
-            width: 100%;
-            max-width: 500px;
-        }
-
         /* Адаптивность для мобильных */
         @media (max-width: 600px) {
             body {
@@ -253,6 +237,7 @@
 
 <div class="container">
 
+    <!-- ===================== ШАПКА ===================== -->
     <header class="header-card">
         <h1>Максим Бородин</h1>
         <div class="role">Python Backend Developer</div>
@@ -279,6 +264,7 @@
 
     <div class="content-body">
         
+        <!-- ===================== ОБО МНЕ ===================== -->
         <section>
             <h2>Обо мне</h2>
             <p class="about-text">
@@ -286,6 +272,7 @@
             </p>
         </section>
 
+        <!-- ===================== СТЕК ===================== -->
         <section>
             <h2>Технологический стек</h2>
             <div class="skills-container">
@@ -313,9 +300,11 @@
             </div>
         </section>
 
+        <!-- ===================== ОПЫТ РАБОТЫ ===================== -->
         <section>
             <h2>Опыт работы</h2>
 
+            <!-- Generali -->
             <div class="job-block">
                 <div class="job-header">
                     <span class="company-name">Generali</span>
@@ -333,6 +322,7 @@
                 </ul>
             </div>
 
+            <!-- Eco-safety -->
             <div class="job-block">
                 <div class="job-header">
                     <span class="company-name">Eco-safety</span>
@@ -352,54 +342,8 @@
             </div>
         </section>
 
-        <section class="dashboard-section">
-            <h2>Распределение экспертизы (Пример графика)</h2>
-            <div class="chart-container">
-                <canvas id="techRadarChart"></canvas>
-            </div>
-        </section>
-
     </div>
 </div>
-
-<script>
-    // Настройка графика Chart.js
-    const ctx = document.getElementById('techRadarChart').getContext('2d');
-    const techRadarChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['FastAPI / asyncio', 'PostgreSQL / SQLAlchemy', 'Kafka / gRPC', 'NoSQL (Mongo, ClickHouse)', 'DevOps (Docker, K8s)'],
-            datasets: [{
-                data: [30, 25, 20, 15, 10],
-                backgroundColor: [
-                    '#1F3B5B', // MainColor
-                    '#2D9C95', // AccentColor
-                    '#5F6B7A', // TextGray
-                    '#A2C2D6', // Светло-синий
-                    '#D8E3EC'  // SoftLine
-                ],
-                borderWidth: 1,
-                borderColor: '#ffffff'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        font: {
-                            family: "'Inter', sans-serif",
-                            size: 12
-                        },
-                        boxWidth: 15
-                    }
-                }
-            }
-        }
-    });
-</script>
 
 </body>
 </html>
