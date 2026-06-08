@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максим Бородин — Резюме</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            --main-color: #1F3B5B;
+            --accent-color: #2D9C95;
+            --soft-line: #D8E3EC;
+            --soft-bg: #F5F8FB;
+            --text-dark: #2C3E50;
+            --text-gray: #5F6B7A;
+            --tag-bg: #EDF4F8;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f3f6;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        /* Шапка профиля */
+        .header-card {
+            background-color: var(--soft-bg);
+            padding: 40px;
+            border-bottom: 1px solid var(--soft-line);
+        }
+
+        .header-card h1 {
+            font-size: 2.2rem;
+            color: var(--main-color);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .role {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            width: 18px;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Основной контент */
+        .content-body {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--main-color);
+            font-weight: 700;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        p.about-text {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* Навыки / Стек */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background-color: var(--tag-bg);
+            color: var(--main-color);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(31, 59, 91, 0.05);
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--main-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Опыт работы */
+        .job-block {
+            margin-bottom: 30px;
+        }
+
+        .job-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+
+        .company-name {
+            font-size: 1.25rem;
+            color: var(--main-color);
+            font-weight: 700;
+        }
+
+        .period {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .job-title {
+            color: var(--text-gray);
+            font-style: italic;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .achievements-list {
+            list-style-type: none;
+        }
+
+        .achievements-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.98rem;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        .achievements-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Блок с графиками */
+        .dashboard-section {
+            background-color: var(--soft-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--soft-line);
+            margin-top: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 300px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Адаптивность для мобильных */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px 5px;
+            }
+            .header-card, .content-body {
+                padding: 20px;
+            }
+            .header-card h1 {
+                font-size: 1.8rem;
+            }
+            .job-header {
+                flex-direction: column;
+            }
+            .period {
+                margin-top: 3px;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header class="header-card">
+        <h1>Максим Бородин</h1>
+        <div class="role">Python Backend Developer</div>
+        
+        <div class="contacts-grid">
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:mroborodin@yandex.ru">mroborodin@yandex.ru</a>
+            </div>
+            <div class="contact-item">
+                <i class="fa-brands fa-telegram"></i>
+                <a href="https://t.me/chaishow" target="_blank">@chaishow</a>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+79500073504">+7 (950) 007-35-04</a>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Сербия</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-body">
+        
+        <section>
+            <h2>Обо мне</h2>
+            <p class="about-text">
+                Разработчик на Python с опытом развития высоконагруженных сервисов и клиентских платформ. Работал с API, интеграциями и обработкой данных в доменах страхования и медицины. Имею практический опыт оптимизации производительности (SQL, кэширование, асинхронная обработка), построения интеграций (Kafka, gRPC, S3) и разработки сервисов под нагрузкой. Могу принять задачу в любом виде и довести до релиза. Стремлюсь развиваться в направлении построения масштабируемых систем и продуктов с ML.
+            </p>
+        </section>
+
+        <section>
+            <h2>Технологический стек</h2>
+            <div class="skills-container">
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">FastAPI</div>
+                <div class="skill-tag">SQLAlchemy</div>
+                <div class="skill-tag">PostgreSQL</div>
+                <div class="skill-tag">Redis</div>
+                <div class="skill-tag">Kafka</div>
+                <div class="skill-tag">MongoDB</div>
+                <div class="skill-tag">ClickHouse</div>
+                <div class="skill-tag">Docker</div>
+                <div class="skill-tag">Kubernetes</div>
+                <div class="skill-tag">Nginx</div>
+                <div class="skill-tag">REST API</div>
+                <div class="skill-tag">JWT</div>
+                <div class="skill-tag">OAuth2</div>
+                <div class="skill-tag">Pydantic</div>
+                <div class="skill-tag">asyncio</div>
+                <div class="skill-tag">S3</div>
+                <div class="skill-tag">SMTP</div>
+                <div class="skill-tag">SMS gateway</div>
+                <div class="skill-tag">OpenAPI</div>
+                <div class="skill-tag">gRPC</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Опыт работы</h2>
+
+            <div class="job-block">
+                <div class="job-header">
+                    <span class="company-name">Generali</span>
+                    <span class="period">07/2023 — Настоящее время</span>
+                </div>
+                <div class="job-title">Python Backend Developer</div>
+                <ul class="achievements-list">
+                    <li>Разработал группу сервисов на Python и FastAPI для обслуживания клиентского портала с разделами страховых продуктов, локаций, обращений, подачи заявлений на убытки и проверки статуса выплат, обеспечив стабильную обработку до 3 тыс. RPS в пиковые периоды.</li>
+                    <li>Решил проблему высокой задержки при запросах статуса убытка за счет выноса тяжелых операций из синхронного контура и кеширования часто запрашиваемых данных, сократив время ответа API с 2s до 400ms и снизив нагрузку на основную БД на 30%.</li>
+                    <li>Занимался интеграцией клиентского портала с внутренними системами компании, чтобы заявки, обращения и статусы синхронно передавались в контуры CRM, урегулирования и клиентского сопровождения.</li>
+                    <li>Разработал сервис приема и маршрутизации клиентских обращений и жалоб с классификацией типа обращения, хранением истории обработки и передачей во внутренние очереди.</li>
+                    <li>Исправил деградацию производительности клиентского портала в пиковые периоды за счет оптимизации запросов, перевода части сценариев на асинхронную обработку и снижения количества блокирующих операций, сократив latency ключевых эндпоинтов примерно на 25%.</li>
+                    <li>Разработал механизм аудита действий по критичным операциям: создание обращения, изменение статуса убытка, обновление данных клиента и привязка документов.</li>
+                    <li>Разработал и усилил слой обработки персональных данных клиентов в сценариях оформления, обращений и урегулирования убытков с учетом требований к защите чувствительной информации.</li>
+                </ul>
+            </div>
+
+            <div class="job-block">
+                <div class="job-header">
+                    <span class="company-name">Eco-safety</span>
+                    <span class="period">03/2021 — 07/2023</span>
+                </div>
+                <div class="job-title">Python Backend Developer</div>
+                <ul class="achievements-list">
+                    <li>Разработал и переписал core микросервиса для парсинга государственного реестра ГРЛС, обеспечив стабильное получение и актуализацию данных, необходимых для подготовки документации клинических исследований.</li>
+                    <li>Разработал и дорабатывал gRPC-интеграции между ERP-системой и смежными сервисами, через которые передавались данные о пациентах, исследованиях, этапах и посещениях.</li>
+                    <li>Разработал и дорабатывал backend-логику генерации PDF-документов на основе HTML-шаблонов для внутренних процессов клинических исследований.</li>
+                    <li>Разработал кастомную систему генерации документов на основе DOCX-шаблонов, которая позволила вынести часто меняющиеся шаблоны из зоны ответственности разработчиков и передать их в работу персоналу медцентра.</li>
+                    <li>Занимался интеграцией S3-хранилища в ERP-систему для централизованного хранения и выдачи документов, снизив нагрузку на основную БД на 35%. Реализовал сценарии сохранения и получения файлов.</li>
+                    <li>Разработал backend программы лояльности для личного кабинета пациента: начисление, списание, хранение баллов и поддержку уровней лояльности.</li>
+                    <li>Занимался интеграцией личного кабинета пациента с внутренними сервисами клиники, в том числе со сценарием доставки сгенерированных документов из ERP.</li>
+                    <li>Занимался технической поддержкой смежной frontend-команды со стороны backend: помогал выстраивать корректное взаимодействие с API, локально поднимать окружение и работать с тестовыми данными.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <h2>Распределение экспертизы (Пример графика)</h2>
+            <div class="chart-container">
+                <canvas id="techRadarChart"></canvas>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<script>
+    // Настройка графика Chart.js
+    const ctx = document.getElementById('techRadarChart').getContext('2d');
+    const techRadarChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['FastAPI / asyncio', 'PostgreSQL / SQLAlchemy', 'Kafka / gRPC', 'NoSQL (Mongo, ClickHouse)', 'DevOps (Docker, K8s)'],
+            datasets: [{
+                data: [30, 25, 20, 15, 10],
+                backgroundColor: [
+                    '#1F3B5B', // MainColor
+                    '#2D9C95', // AccentColor
+                    '#5F6B7A', // TextGray
+                    '#A2C2D6', // Светло-синий
+                    '#D8E3EC'  // SoftLine
+                ],
+                borderWidth: 1,
+                borderColor: '#ffffff'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: "'Inter', sans-serif",
+                            size: 12
+                        },
+                        boxWidth: 15
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
